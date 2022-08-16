@@ -1,0 +1,15 @@
+{
+  "name": "notion-personal-relationship-manager",
+  "version": "1.0.0",
+  "description": "A personal relationship manager using Notion API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "notion api",
+    "crm"
+  ],
+  "author": "Adaobi Aniuchi",
+  "license": "MIT"
+}
