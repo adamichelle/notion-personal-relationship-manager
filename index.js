@@ -1,4 +1,7 @@
 const dotenv = require("dotenv")
+const { Client } = require("@notionhq/client")
   
 dotenv.config()
-console.log(process.env.NOTION_AUTH_TOKEN)
+const notionClient = new Client({
+    auth: process.env.NOTION_AUTH_TOKEN
+})
