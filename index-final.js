@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const { Client, APIResponseError } = require("@notionhq/client");
 const twilio = require('twilio')
 const RestException = require('twilio/lib/base/RestException')
-  
+
 dotenv.config();
 
 const notionClient = new Client({
@@ -59,7 +59,7 @@ const _sendSMS = async (phoneNumber, messageBody) => {
 }
 
 (async () => {
-    try {
+    try { 
         const response = await notionClient.databases.query({
             database_id: process.env.NOTION_DATABASE_ID,
             filter: {
@@ -69,7 +69,7 @@ const _sendSMS = async (phoneNumber, messageBody) => {
                 },
             },
         });
-        
+
         const details = await _extractContactDetails(response.results);
 
         for (const detail of details) {
@@ -86,7 +86,7 @@ const _sendSMS = async (phoneNumber, messageBody) => {
 
             console.info(response.sid, response.status)
         }
-
+        
     } catch (error) {
         if (error instanceof APIResponseError) {
             console.error("Unable to fetch items from database. An error occured from the API client.")
