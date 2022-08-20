@@ -11,5 +11,14 @@
     "crm"
   ],
   "author": "Adaobi Aniuchi",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/adamichelle/notion-personal-relationship-manager",
+    "type": "git"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.1.1",
+    "dotenv": "^16.0.1",
+    "twilio": "^3.80.1"
+  }
 }
