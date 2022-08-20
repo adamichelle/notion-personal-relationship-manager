@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-const { Client } = require("@notionhq/client");
+const { Client, APIResponseError } = require("@notionhq/client");
   
 dotenv.config()
 const notionClient = new Client({
@@ -50,16 +50,25 @@ const _extractContactDetails= async (filteredContactsArray) => {
 };
 
 (async () => {
-    const response = await notionClient.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID,
-        filter: {
-            property: "Should Reach Out?",
-            checkbox: {
-                equals: true,
+    try {
+        const response = await notionClient.databases.query({
+            database_id: process.env.NOTION_DATABASE_ID,
+            filter: {
+                property: "Should Reach Out?",
+                checkbox: {
+                    equals: true,
+                },
             },
-        },
-    });
-    
-    const details = await _extractContactDetails(response.results);
-    console.log(details)
+        });
+        
+        const details = await _extractContactDetails(response.results);
+    } catch (error) {
+        if (error instanceof APIResponseError) {
+            console.error("Unable to fetch items from database. An error occured from the API client.")
+            console.error("Error code: " + error.code)
+            console.error(error.message)
+        } else {
+            console.error(error.message)
+        }
+    }
 })()
