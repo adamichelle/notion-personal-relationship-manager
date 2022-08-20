@@ -1,0 +1,20 @@
+name: Check for Contacts that Have Not Been Contacted Recently and Notify Through SMS Flow
+on:
+  schedule:
+    - cron: '0 14 * * 6'
+  workflow_dispatch:
+jobs:
+  check_and_notify:
+    name: Check for Contacts that Have Not Been Contacted Recently and Send SMS Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.1
+      - name: Install dependencies
+        run: yarn install
+      - name: Run index.js
+        run: node index.js
