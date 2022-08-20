@@ -8,7 +8,13 @@ const notionClient = new Client({
 
 (async () => {
     const response = await notionClient.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID
+        database_id: process.env.NOTION_DATABASE_ID,
+        filter: {
+            property: "Should Reach Out?",
+            checkbox: {
+                equals: true,
+            },
+        },
     });
     
     console.log(response);
